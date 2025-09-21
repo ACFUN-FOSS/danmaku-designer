@@ -1,0 +1,35 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # 每次 push 到 main 分支触发
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 拉取代码
+      - name: Checkout repository
+        uses: actions/checkout@master
+
+      - name: pnpm-setup
+        uses: pnpm/action-setup@master
+        with:
+          version: 9.5.0
+
+      # 安装依赖
+      - name: Install dependencies
+        run: pnpm install
+
+      # 构建项目
+      - name: Build
+        run: pnpm build
+
+      # 部署到 GitHub Pages
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.6.1
+        with:
+          branch: gh-pages
+          folder: dist
