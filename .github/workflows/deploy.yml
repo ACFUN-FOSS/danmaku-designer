@@ -41,6 +41,9 @@ jobs:
         with:
           name: dist-artifact
           path: dist
+      
+      - name: Add .nojekyll
+        run: echo > dist/.nojekyll
 
       # 部署到 GitHub Pages
       - name: Deploy 🚀
