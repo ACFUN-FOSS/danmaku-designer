@@ -15,6 +15,7 @@ export default defineConfig(({mode}) => {
       vueJsx(),
       vueDevTools()
     ],
+    base: '/danmaku-designer/',
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'),
