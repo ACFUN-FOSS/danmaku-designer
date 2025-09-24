@@ -27,6 +27,21 @@ jobs:
       - name: Build
         run: pnpm build
 
+            # 👉 Debug: 列出构建结果
+      - name: List dist files
+        run: |
+          echo "==== dist 目录结构 ===="
+          ls -R dist
+          echo "==== assets 文件 ===="
+          ls dist/assets || true
+
+      # 👉 Debug: 上传构建产物，方便下载检查
+      - name: Upload dist artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-artifact
+          path: dist
+
       # 部署到 GitHub Pages
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.6.1
